@@ -8,34 +8,34 @@ LIO 종류의 SLAM을 빌드할 때 cannot find -lBoost ~ 이런식의 에러가
 
 이때 PGO의 CMakeList에서 Boost Library를 Linking 해주는 작업이 필요하다.
 
-  set(Boost_USE_STATIC_LIBS OFF)
-  set(Boost_USE_MULTITHREADED ON)
-  set(Boost_USE_STATIC_RUNTIME OFF)
+    set(Boost_USE_STATIC_LIBS OFF)
+    set(Boost_USE_MULTITHREADED ON)
+    set(Boost_USE_STATIC_RUNTIME OFF)
 
-  find_package(Boost COMPONENTS 
-  serialization 
-  timer 
-  thread 
-  chrono
-  )
+    find_package(Boost COMPONENTS 
+    serialization 
+    timer 
+    thread 
+    chrono
+    )
 
 위의 코드를 추가해주고 include_directories와 target_link_libraries(alaserPGO~)에 ${Boost_INCLUDE_DIRS}을 추가해주면 간단히 해결된다.
 
-  include_directories(
-  include
-	${catkin_INCLUDE_DIRS} 
-	${PCL_INCLUDE_DIRS}
-  ${CERES_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-  ${GTSAM_INCLUDE_DIR}
-  ${Boost_INCLUDE_DIRS}
-  )
+    include_directories(
+    include
+    ${catkin_INCLUDE_DIRS} 
+    ${PCL_INCLUDE_DIRS}
+    ${CERES_INCLUDE_DIRS}
+    ${OpenCV_INCLUDE_DIRS}
+    ${GTSAM_INCLUDE_DIR}
+    ${Boost_INCLUDE_DIRS}
+    )
 
-  target_link_libraries(alaserPGO 
-  ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${CERES_LIBRARIES}
-  ${OpenMP_CXX_FLAGS} ${Boost_INCLUDE_DIRS}
-  gtsam
-  )
+    target_link_libraries(alaserPGO 
+    ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${CERES_LIBRARIES}
+    ${OpenMP_CXX_FLAGS} ${Boost_INCLUDE_DIRS}
+    gtsam
+    )
 
 ## error: ‘Identity’ is not a member of ‘gtsam::Pose3’
 
