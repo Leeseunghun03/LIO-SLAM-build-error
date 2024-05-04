@@ -63,7 +63,7 @@ ceres::EigenQuaternionParameterization()
 
 1. CmakeList의 find_package에서 맨 뒤에 genmsg 추가
    
-find_package(catkin REQUIRED COMPONENTS geometry_msgs nav_msgs sensor_msgs roscpp rospy std_msgs pcl_ros tf livox_ros_driver message_generation eigen_conversions genmsg )
+    find_package(catkin REQUIRED COMPONENTS geometry_msgs nav_msgs sensor_msgs roscpp rospy std_msgs pcl_ros tf livox_ros_driver message_generation eigen_conversions genmsg )
 
 
 2. add_dependencies(fastlio_mapping fast_lio_generate_messages_cpp) 추가
